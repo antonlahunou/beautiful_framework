@@ -1,3 +1,5 @@
-SERVER_URL = "https://gorest.co.in"
+SERVER_URL = "https://gorest.co.in/public/v2"
 
-GET_USERS = "/public/v2/users"
+USERS_URL = "/users"
+POSTS_URL = "/posts"
+COMMENTS_URL = "/comments"

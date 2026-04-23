@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field, TypeAdapter, field_validator
 
 class User(BaseModel):
     id: int = Field(ge=0)
-    name: str = Field(min_length=2, max_length=100, pattern=r"^[a-zA-Z\s]+$")
+    name: str = Field(min_length=2, max_length=100, pattern=r"^[a-zA-Z\.\s]+$")
     email: Optional[str] = Field(pattern=r"^[\w\.-]+@[\w\.-]+\.\w+$")
     gender: Optional[str]
     status: Optional[str]
@@ -26,3 +26,9 @@ class User(BaseModel):
         return v
 
 UserListAdapter = TypeAdapter(List[User])
+
+class CreateUserRequest(BaseModel):
+    name: str
+    email: Optional[str] = None
+    gender: Optional[str] = None
+    status: Optional[str] = None
