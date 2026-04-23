@@ -1,1 +1,3 @@
-SERVER_URL = "https://gorest.co.in/public/v2/users"
+SERVER_URL = "https://gorest.co.in"
+
+GET_USERS = "/public/v2/users"
