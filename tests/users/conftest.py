@@ -8,8 +8,8 @@ def users_client():
 @pytest.fixture
 def random_user_payload():
     return {
-        "name": "Leo",
-        "email": "ads@gmail.com",
+        "name": "LeonardoD",
+        "email": "asdfg@gmail.com",
         "gender": "male",
         "status": "active"
     }
@@ -21,3 +21,16 @@ def created_user(users_client, random_user_payload):
     user = response.json()
     yield user
     users_client.delete_user(user["id"])
+
+@pytest.fixture
+def mark_user_for_deletion(users_client):
+    users_to_delete = []
+
+    def track_user(user_id):
+        users_to_delete.append(user_id)
+        return user_id
+
+    yield track_user
+
+    for user_id in users_to_delete:
+        users_client.delete_user(user_id)

@@ -27,7 +27,7 @@ def create_tables():
     conn.commit()
     cursor.close()
     conn.close()
-    print("Таблица users создана (или уже существует)")
+    print("USERS table created")
 
 if __name__ == "__main__":
     create_tables()
