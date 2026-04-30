@@ -1,5 +1,6 @@
 import pytest
 from clients.users_client import UsersClient
+from factories.user_factory import generate_random_user_data
 
 @pytest.fixture(scope="session")
 def users_client():
@@ -7,11 +8,12 @@ def users_client():
 
 @pytest.fixture
 def random_user_payload():
+    data = generate_random_user_data()
     return {
-        "name": "LeonardoD",
-        "email": "asdfg@gmail.com",
-        "gender": "male",
-        "status": "active"
+        "name": data["name"],
+        "email": data["email"],
+        "gender": data["gender"],
+        "status": data["status"]
     }
 
 @pytest.fixture
