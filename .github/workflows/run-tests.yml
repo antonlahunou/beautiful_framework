@@ -34,6 +34,7 @@ jobs:
 
     - name: Run tests with PyTest
       run: |
+        ls -la tests/
         pytest tests/ --alluredir=allure-results
 
     - name: Upload Allure raw results
