@@ -33,8 +33,9 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run tests with PyTest
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       run: |
-        ls -la tests/
         pytest tests/ --alluredir=allure-results
 
     - name: Upload Allure raw results
