@@ -36,23 +36,9 @@ jobs:
       run: |
         pytest tests/ --alluredir=allure-results
 
-    - name: Upload Allure raw results as artifact
+    - name: Upload Allure raw results
       uses: actions/upload-artifact@v4
       with:
         name: allure-results
         path: allure-results
-        retention-days: 7
-
-    - name: Setup Allure for report generation
-      uses: simple-elf/allure-action@v1
-      id: allure
-      with:
-        allure-results: allure-results
-        allure-report: allure-report
-
-    - name: Upload Allure HTML report as artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: allure-report
-        path: allure-report
         retention-days: 7
