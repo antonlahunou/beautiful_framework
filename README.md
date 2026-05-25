@@ -58,7 +58,7 @@ API tests for /users (CRUD)
 
 Pydantic validation
 
-Allure reports
+Allure reports: request/response logging
 
 GitHub Actions pipeline
 
@@ -70,8 +70,6 @@ API tests for /posts, /comments
 Playwright UI tests
 
 Integration tests with PostgreSQL
-
-Better Allure reports
 
 Contact
 GitHub: antonlahunou
