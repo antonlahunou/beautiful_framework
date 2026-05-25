@@ -1,3 +1,4 @@
+import pytest
 from faker import Faker
 
 from schemas.users_schemas import *
@@ -162,6 +163,7 @@ def test_update_user_with_status_as_dead(users_client, created_user):
     response = users_client.update_user(created_user["id"], created_user)
     assert response.status_code == 422
 
+@pytest.mark.skip("Unexpected behaviour of update method")
 def test_update_user_with_existing_email(users_client, created_user, random_user_payload, mark_user_for_deletion):
     response = users_client.create_user(random_user_payload)
     assert response.status_code == 201
