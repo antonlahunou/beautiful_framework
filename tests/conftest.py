@@ -3,6 +3,8 @@ import allure
 import psycopg2
 from utils.create_db import get_connection
 from requests import Session
+from clients.users_client import UsersClient
+from factories.user_factory import generate_random_user_data
 
 @pytest.fixture(scope="session")
 def db_connection():
@@ -56,3 +58,25 @@ def attach_request_response():
     Session.request = logged_request
     yield
     Session.request = original_request
+
+@pytest.fixture(scope="session")
+def users_client():
+    return UsersClient()
+
+@pytest.fixture
+def random_user_payload():
+    data = generate_random_user_data()
+    return {
+        "name": data["name"],
+        "email": data["email"],
+        "gender": data["gender"],
+        "status": data["status"]
+    }
+
+@pytest.fixture
+def created_user(users_client, random_user_payload):
+    response = users_client.create_user(random_user_payload)
+    assert response.status_code == 201
+    user = response.json()
+    yield user
+    users_client.delete_user(user["id"])
