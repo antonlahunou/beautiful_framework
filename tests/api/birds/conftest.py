@@ -15,3 +15,16 @@ def created_bird(bird_client):
     bird = response.json()
     yield bird
     bird_client.delete_bird(bird["id"])
+
+@pytest.fixture
+def mark_bird_for_deletion(bird_client):
+    birds_to_delete = []
+
+    def track_bird(bird_id):
+        birds_to_delete.append(bird_id)
+        return bird_id
+
+    yield track_bird
+
+    for bird_id in birds_to_delete:
+        bird_client.delete_bird(bird_id)

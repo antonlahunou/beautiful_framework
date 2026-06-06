@@ -22,6 +22,6 @@ def generate_random_bird_data() -> dict:
         "confidence": round(fake.pyfloat(min_value=0.5, max_value=1.0), 2),
         "photo_url": fake.image_url(),
         "audio_url": fake.url(),
-        "location_lat": fake.latitude(),
-        "location_lon": fake.longitude()
+        "location_lat": float(fake.latitude()),
+        "location_lon": float(fake.longitude())
     }
