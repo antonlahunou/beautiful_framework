@@ -1,13 +1,12 @@
 import requests
 
-from config.settings import ACCESS_TOKEN
 from configurations import SERVER_URL
+
 
 class BaseClient:
     def __init__(self):
         self.session = requests.Session()
         self.session.headers.update({
-            "Authorization": f"Bearer {ACCESS_TOKEN}",
             "Content-Type": "application/json"
         })
 
